@@ -19,6 +19,7 @@ class FirstPage extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
+              Image.network('https://pbs.twimg.com/profile_images/2000210167322009600/oNqYpavH_400x400.jpg'),
               TextField(
                 onChanged: (text){
                   nameText = text;
