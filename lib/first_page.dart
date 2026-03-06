@@ -3,8 +3,7 @@ import 'package:first_program/second_page.dart';
 import 'package:flutter/material.dart';
 
 class FirstPage extends StatelessWidget {
-  String nameText = '';
-
+  final List<int> entries = [0,1,2,3];
 
   @override
   Widget build(BuildContext context) {
@@ -13,36 +12,20 @@ class FirstPage extends StatelessWidget {
           backgroundColor: Colors.lightBlueAccent,
           title: Text('滑らかラテSmart')
       ),
-      body: Center(
-        child: Padding(
-          padding: const EdgeInsets.all(20.0),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Image.network('https://pbs.twimg.com/profile_images/2000210167322009600/oNqYpavH_400x400.jpg'),
-              TextField(
-                onChanged: (text){
-                  nameText = text;
-                },
-              ),
-
-              OutlinedButton(onPressed: (){
-                //ボタンを押した時のコードを書く
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => SecondPage(nameText),
-                    fullscreenDialog: true,
+      body: ListView.separated(
+          itemCount: entries.length,
+          itemBuilder: (BuildContext context, int index) {
+            return Center(
+                child: Container(
+                  color: Colors.yellow,
+                  padding: const EdgeInsets.all(8.0),
+                  child: Text(
+                    'No ${entries[index]}',
+                    style: TextStyle(fontSize: 30),
                   ),
-                );
-              },
-                  child: const Text('次の画面へ')
-                //constは静的な変数に使われる
-              ),
-            ],
-          ),
-        ),
-      ),
+                ));
+          }, separatorBuilder: (BuildContext context, int index) => const Divider(color: Colors.black,),
+    )
     );
   }
 }
